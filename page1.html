@@ -9,12 +9,25 @@
         body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-size: 800px; text-align: center; }
     </style>
     <script>
-        function loadText() {
-            document.body.innerText = localStorage.getItem('text1') || '';
+        // Функция для загрузки данных из файла на GitHub
+        async function loadText() {
+            try {
+                const response = await fetch('https://api.github.com/repos/makar1310/cardfirstprogect/blob/main/.github/workflows/update-data.yml');
+                const data = await response.json();
+                if (data.content) {
+                    const decodedContent = atob(data.content);  // Декодируем содержимое из base64
+                    const parsedData = JSON.parse(decodedContent);
+                    document.body.innerText = parsedData.text1 || '';  // Используем данные из text1
+                }
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+            }
         }
-        setInterval(loadText, 1000); // Автообновление каждую секунду
+
+        // Загружаем данные сразу после загрузки страницы
+        window.onload = loadText;
     </script>
 </head>
-<body onload="loadText()">
+<body>
 </body>
 </html>
