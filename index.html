@@ -1,0 +1,52 @@
+<!-- Главная страница (index.html) -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        .container { margin-top: 50px; }
+        input { display: block; margin: 10px auto; padding: 10px; width: 300px; }
+        button { padding: 10px; margin: 5px; background-color: gray; color: white; border: none; cursor: pointer; }
+        a { display: block; margin: 10px; font-size: 20px; }
+    </style>
+    <script>
+        function saveText(id, buttonId) {
+            const value = document.getElementById(id).value;
+            if (value.trim() !== "") {
+                localStorage.setItem(id, value);
+                document.getElementById(buttonId).style.backgroundColor = "green";
+            }
+        }
+        function resetButton(buttonId) {
+            document.getElementById(buttonId).style.backgroundColor = "gray";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h3>Полина Вольская</h3>
+        <input id="text1" type="text" placeholder="Введите текст 1" oninput="resetButton('btn1')"> 
+        <button id="btn1" onclick="saveText('text1', 'btn1')">Сохр</button>
+        
+        <h3>Никита</h3>
+        <input id="text2" type="text" placeholder="Введите текст 2" oninput="resetButton('btn2')"> 
+        <button id="btn2" onclick="saveText('text2', 'btn2')">Сохр</button>
+        
+        <h3>Полина Семёнова</h3>
+        <input id="text3" type="text" placeholder="Введите текст 3" oninput="resetButton('btn3')"> 
+        <button id="btn3" onclick="saveText('text3', 'btn3')">Сохр</button>
+        
+        <h3>Карина</h3>
+        <input id="text4" type="text" placeholder="Введите текст 4" oninput="resetButton('btn4')"> 
+        <button id="btn4" onclick="saveText('text4', 'btn4')">Сохр</button>
+        
+        <a href="page1.html">Ссылка на карточку Полины Вольской</a>
+        <a href="page2.html">Ссылка на карточку Никиты</a>
+        <a href="page3.html">Ссылка на карточку Полины Семёновой</a>
+        <a href="page4.html">Ссылка на карточку Карины</a>
+    </div>
+</body>
+</html>
